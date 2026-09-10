@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Test_LR1.Models;
+using Test_LR1.Services;
 
 namespace Test_LR1.Controllers
 {
@@ -17,7 +18,7 @@ namespace Test_LR1.Controllers
         {
             return View();
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
