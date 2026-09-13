@@ -39,11 +39,7 @@ bld/
 #wwwroot/
 
 # Скрывать всю папку wwwroot из статистики языков
-wwwroot/** linguist-vendored
-
-# Или, если вы хотите скрыть конкретно сторонний JS-код:
-wwwroot/js/* linguist-vendored
-
+Test_LR1/wwwroot/** linguist-vendored
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
