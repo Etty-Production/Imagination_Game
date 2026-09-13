@@ -61,3 +61,6 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+# Скрывать всю папку wwwroot из статистики языков
+Test_LR1/wwwroot/** linguist-vendored
