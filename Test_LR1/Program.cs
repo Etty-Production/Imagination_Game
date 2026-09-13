@@ -1,11 +1,19 @@
 using Test_LR1.Hubs;
 using Test_LR1.Services;
+using Microsoft.EntityFrameworkCore;
+using Test_LR1.Data; 
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
 builder.Services.AddSignalR();
 
-builder.Services.AddSingleton<PlayerController>();
+builder.Services.AddSingleton<IPlayerService, PlayerService>();
+builder.Services.AddScoped<IPlayerRepository, PlayerRepositoryPostgress>();
+builder.Services.AddHostedService<PlayerFlushService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

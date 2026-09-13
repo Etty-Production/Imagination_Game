@@ -12,13 +12,16 @@
     .build();
 
     // Генерируем ID пользователя
-    const userId = "User_" + Date.now();
+    let userId = "User_" + Date.now();
 
     // --- ОТПРАВКА ДАННЫХ НА СЕРВЕР ---
     
     // Отправляем позицию мыши (с задержкой для производительности)
     let lastSendTime = 0;
     const sendInterval = 50; // мс (20 раз в секунду)
+
+    connection.invoke("SendUserName", userId)
+    .catch(err => console.error("Ошибка отправки позиции:", err));
 
     document.addEventListener("mousemove", function(e) {
     const now = Date.now();
@@ -46,6 +49,10 @@
     connection.on("ReceiveMousePosition", function(userId, x, y) {
     console.log(`👤 ${userId}: (${Math.round(x)}, ${Math.round(y)})`);
     updateCursor(userId, x, y);
+    });
+
+    connection.on("NewUserName", function(UserId) {
+        userId = UserId;
     });
 
     // Отображение кликов других пользователей
